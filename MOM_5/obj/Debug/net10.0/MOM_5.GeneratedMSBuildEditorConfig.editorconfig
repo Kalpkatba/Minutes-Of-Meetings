@@ -1,0 +1,111 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MOM_5
+build_property.RootNamespace = MOM_5
+build_property.ProjectDir = D:\Kalp_DU\SEM_6\DotNet\MOM_5\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Kalp_DU\SEM_6\DotNet\MOM_5
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/Login/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cU2lnbkluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Department/DepartmentAddEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX0RlcGFydG1lbnRcRGVwYXJ0bWVudEFkZEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Department/DepartmentList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX0RlcGFydG1lbnRcRGVwYXJ0bWVudExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_MeetingMember/MeetingMemberAddEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdNZW1iZXJcTWVldGluZ01lbWJlckFkZEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_MeetingMember/MeetingMemberList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdNZW1iZXJcTWVldGluZ01lbWJlckxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Meetings/MeeetingAddEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdzXE1lZWV0aW5nQWRkRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Meetings/MeetingList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdzXE1lZXRpbmdMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Meetings/QuickSchedule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdzXFF1aWNrU2NoZWR1bGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_MeetingType/MeetingTypeAddEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdUeXBlXE1lZXRpbmdUeXBlQWRkRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_MeetingType/MeetingTypeList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdUeXBlXE1lZXRpbmdUeXBlTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_MeetingVenue/MeetingVenueAddEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdWZW51ZVxNZWV0aW5nVmVudWVBZGRFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_MeetingVenue/MeetingVenueList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdWZW51ZVxNZWV0aW5nVmVudWVMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Staff/StaffAddEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX1N0YWZmXFN0YWZmQWRkRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Staff/StaffList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX1N0YWZmXFN0YWZmTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/Shared/_LoginLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-38re2xd0ja

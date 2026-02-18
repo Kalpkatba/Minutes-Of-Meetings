@@ -1,0 +1,74 @@
+﻿@* @model MOM_MeetingsModel
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@(ViewBag.IsEdit == true ? "Edit Meeting" : "Schedule Meeting")</h4>
+
+                <form asp-controller="Meetings" asp-action="MeetingAddEdit" method="post">
+                    @if (ViewBag.IsEdit == true && meeting != null)
+                    {
+                        <input type="hidden" name="MeetingID" value="@meeting.MeetingID" />
+                    }
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Meeting Type <span class="text-danger">*</span></label>
+                            <select name="MeetingTypeID" class="form-select" required>
+                                <option value="">-- Select Meeting Type --</option>
+                                @foreach (var mt in meetingTypes)
+                                {
+                                    var isSelected = meeting != null && meeting.MeetingTypeID == mt.MeetingTypeID;
+                                    <option value="@mt.MeetingTypeID" selected="@isSelected">@mt.MeetingTypeName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Department <span class="text-danger">*</span></label>
+                            <select name="DepartmentID" class="form-select" required>
+                                <option value="">-- Select Department --</option>
+                                @foreach (var dept in departments)
+                                {
+                                    var isSelected = meeting != null && meeting.DepartmentID == dept.DepartmentID;
+                                    <option value="@dept.DepartmentID" selected="@isSelected">@dept.DepartmentName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Venue <span class="text-danger">*</span></label>
+                            <select name="MeetingVenueID" class="form-select" required>
+                                <option value="">-- Select Venue --</option>
+                                @foreach (var venue in venues)
+                                {
+                                    var isSelected = meeting != null && meeting.MeetingVenueID == venue.MeetingVenueID;
+                                    <option value="@venue.MeetingVenueID" selected="@isSelected">@venue.MeetingVenueName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Meeting Date & Time <span class="text-danger">*</span></label>
+                            <input type="datetime-local" name="MeetingDate" class="form-control"
+                                   value="@(meeting?.MeetingDate.ToString("yyyy-MM-ddTHH:mm") ?? DateTime.Now.ToString("yyyy-MM-ddTHH:mm"))" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Meeting Description</label>
+                        <textarea name="MeetingDescription" class="form-control" rows="3" maxlength="250">@(meeting?.MeetingDescription ?? "")</textarea>
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a asp-controller="Meetings" asp-action="MeetingList" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> *@

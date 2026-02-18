@@ -1,0 +1,93 @@
+﻿@model MOM_MeetingsModel
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h4 class="card-title mb-1">Quick Schedule Meeting</h4>
+                        <p class="text-muted">Create and schedule a new organizational meeting</p>
+                    </div>
+                    <a asp-controller="Meetings" asp-action="MeetingList" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Back to Meetings
+                    </a>
+                </div>
+
+                <form asp-controller="MOM_Meetings" asp-action="MeetingAddEdit" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Meeting Type <span class="text-danger">*</span></label>
+                            <select name="MeetingTypeID" class="form-select" asp-items="ViewBag.MeetingTypeList" required>
+                                <option value="">-- Select Meeting Type --</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Department <span class="text-danger">*</span></label>
+                            <select name="DepartmentID" class="form-select" asp-items="ViewBag.DepartmentList" required>
+                                <option value="" >-- Select Department --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Venue <span class="text-danger">*</span></label>
+                            <select name="MeetingVenueID" class="form-select" asp-items="ViewBag.MeetingVenueList" required>
+                                <option value="">-- Select Venue --</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Meeting Date & Time <span class="text-danger">*</span></label>
+                            <input type="datetime-local" name="MeetingDate" class="form-control"
+                                   value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Meeting Description</label>
+                        <textarea name="MeetingDescription" class="form-control" rows="4" maxlength="250" placeholder="Enter meeting description and agenda..."></textarea>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle me-2"></i>Schedule Meeting
+                        </button>
+                        <a asp-controller="MOM_Meetings" asp-action="MeetingList" class="btn btn-secondary">
+                            <i class="bi bi-x-circle me-2"></i>Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Quick Actions</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <a asp-controller="MOM_Department" asp-action="DepartmentList" class="btn btn-outline-primary">
+                        <i class="bi bi-building"></i> Manage Departments
+                    </a>
+                    <a asp-controller="MOM_Staff" asp-action="StaffList" class="btn btn-outline-primary">
+                        <i class="bi bi-people"></i> Manage Staff
+                    </a>
+                    <a asp-controller="MOM_MeetingType" asp-action="MeetingTypeList" class="btn btn-outline-primary">
+                        <i class="bi bi-tag"></i> Manage Meeting Types
+                    </a>
+                    <a asp-controller="MOM_MeetingVenue" asp-action="MeetingVenueList" class="btn btn-outline-primary">
+                        <i class="bi bi-geo-alt"></i> Manage Venues
+                    </a>
+                    <a asp-controller="MOM_Meetings" asp-action="MeetingList" class="btn btn-outline-primary">
+                        <i class="bi bi-calendar-event"></i> View All Meetings
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
