@@ -1,0 +1,174 @@
+@model MOM_5.Models.MOM_MeetingsModel
+<div class="row container-fluid">
+    <div class="row-cols-lg-auto mx-auto">
+        <div class="card shadow-lg">
+            <div class="card-header bg-theme-header fw-bold">
+                <h4 class="card-title">
+                    @(Model.MeetingID != 0 ? "Edit Meeting" : "Schedule Meeting")
+                </h4>
+            </div>
+            <div class="card-body">
+                <form asp-controller="MOM_Meetings" asp-action="MeeitngSave" method="post">
+
+                    <input asp-for="MeetingID" type="hidden" />
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="MeetingTypeID" class="form-label">Meeting Type <span class="text-danger">*</span></label>
+                            <select asp-for="MeetingTypeID" class="form-select" asp-items="ViewBag.MeetingTypeList" required>
+                                <option value="">-- Select Meeting Type --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="DepartmentID" class="form-label">Department <span class="text-danger">*</span></label>
+                            <select asp-for="DepartmentID" class="form-select" asp-items="ViewBag.DepartmentList" required>
+                                <option value="">-- Select Department --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="MeetingVenueID" class="form-label">Venue <span class="text-danger">*</span></label>
+                            <select asp-for="MeetingVenueID" class="form-select" asp-items="ViewBag.MeetingVenueList" required>
+                                <option value="">-- Select Venue --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="MeetingDate" class="form-label">Meeting Date & Time <span class="text-danger">*</span></label>
+                            <input asp-for="MeetingDate" type="datetime-local" class="form-control" id="MeetingDateInput"
+                                   value="@(Model.MeetingID != 0 ? Model.MeetingDate.ToString("yyyy-MM-ddTHH:mm") : DateTime.Now.ToString("yyyy-MM-ddTHH:mm"))" required />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="MeetingDescription" class="form-label">Meeting Description</label>
+                        <textarea asp-for="MeetingDescription" class="form-control" rows="4" maxlength="250" placeholder="Enter meeting description and agenda..."></textarea>
+                    </div>
+
+                    @if (Model.MeetingID != 0)
+                    {
+                        @* ── Auto-calculated Status Badge ── *@
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Meeting Status</label>
+                                <div>
+                                    @{
+                                        string currentStatus = Model.IsCancelled ? "Cancelled"
+                                                              : Model.MeetingDate > DateTime.Now ? "Pending"
+                                                              : "Completed";
+                                        string badgeClass = currentStatus == "Cancelled" ? "bg-danger"
+                                                           : currentStatus == "Pending" ? "bg-warning text-dark"
+                                                           : "bg-success";
+                                        string badgeIcon = currentStatus == "Cancelled" ? "❌"
+                                                           : currentStatus == "Pending" ? "🕐"
+                                                           : "✅";
+                                    }
+                                    <span id="statusBadge" class="badge @badgeClass fs-6 px-3 py-2">
+                                        @badgeIcon @currentStatus
+                                    </span>
+                                </div>
+                            </div>
+
+                            @* ── IsCancelled Toggle ── *@
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Cancel Meeting</label>
+                                <div class="form-check form-switch mt-1">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                           id="IsCancelledToggle" @(Model.IsCancelled ? "checked" : "")
+                                           style="width: 3em; height: 1.5em; cursor: pointer;" />
+                                    <label class="form-check-label ms-2" for="IsCancelledToggle" id="toggleLabel">
+                                        @(Model.IsCancelled ? "Yes — Meeting is Cancelled" : "No")
+                                    </label>
+                                </div>
+                                <input type="hidden" id="IsCancelledField" name="IsCancelled"
+                                       value="@Model.IsCancelled.ToString().ToLower()" />
+                            </div>
+                        </div>
+
+                        @* ── Cancellation Reason (shown only when IsCancelled) ── *@
+                        <div id="CancellationReasonDiv" class="mb-3" style="display:@(Model.IsCancelled ? "block" : "none")">
+                            <label class="form-label fw-semibold">Cancellation Reason <span class="text-danger">*</span></label>
+                            <textarea id="CancellationReasonField" name="CancellationReason"
+                                      class="form-control" rows="3"
+                                      placeholder="Enter reason for cancellation...">@Model.CancellationReason</textarea>
+                        </div>
+
+                        @* ── Cancellation DateTime (read-only, shown only when cancelled) ── *@
+                        <div id="CancellationDateTimeDiv" class="mb-3" style="display:@(Model.IsCancelled ? "block" : "none")">
+                            <label class="form-label fw-semibold">Cancellation Date & Time</label>
+                            <input type="text" class="form-control" readonly
+                                   value="@(Model.CancellationDateTime.HasValue && Model.CancellationDateTime.Value != DateTime.MinValue
+                                            ? Model.CancellationDateTime.Value.ToString("yyyy-MM-dd HH:mm")
+                                            : "Will be set on save")" />
+                        </div>
+
+                        <input type="hidden" id="CancellationDateTimeField" name="CancellationDateTime"
+                               value="@(Model.CancellationDateTime.HasValue && Model.CancellationDateTime.Value != DateTime.MinValue
+                                        ? Model.CancellationDateTime.Value.ToString("o") : "")" />
+                    }
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-theme fw-bold">
+                            <i class="bi bi-check-circle me-2"></i>@(Model.MeetingID > 0 ? "Update"
+                                                        : "Schedule Meeting")
+                        </button>
+                        <a asp-controller="MOM_Meetings" asp-action="MeetingList" class="btn btn-danger fw-bold">
+                            <i class="bi bi-x-circle me-2"></i>Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // ── Toggle IsCancelled ──
+        var toggle = document.getElementById('IsCancelledToggle');
+        var hiddenField = document.getElementById('IsCancelledField');
+        var reasonDiv = document.getElementById('CancellationReasonDiv');
+        var dateTimeDiv = document.getElementById('CancellationDateTimeDiv');
+        var toggleLabel = document.getElementById('toggleLabel');
+
+        toggle.addEventListener('change', function () {
+            var isCancelled = this.checked;
+            hiddenField.value = isCancelled ? 'true' : 'false';
+            reasonDiv.style.display = isCancelled ? 'block' : 'none';
+            dateTimeDiv.style.display = isCancelled ? 'block' : 'none';
+            toggleLabel.textContent = isCancelled ? 'Yes — Meeting is Cancelled' : 'No';
+
+            if (!isCancelled) {
+                document.getElementById('CancellationReasonField').value = '';
+            }
+            updateStatusBadge();
+        });
+
+        // ── Recalculate status badge when date changes ──
+        var dateInput = document.getElementById('MeetingDateInput');
+        dateInput.addEventListener('change', function () {
+            updateStatusBadge();
+        });
+
+        function updateStatusBadge() {
+            var badge = document.getElementById('statusBadge');
+            var isCancelled = toggle.checked;
+
+            if (isCancelled) {
+                badge.className = 'badge bg-danger fs-6 px-3 py-2';
+                badge.textContent = '❌ Cancelled';
+                return;
+            }
+
+            var selectedDate = new Date(dateInput.value);
+            var now = new Date();
+
+            if (selectedDate > now) {
+                badge.className = 'badge bg-warning text-dark fs-6 px-3 py-2';
+                badge.textContent = '🕐 Pending';
+            } else {
+                badge.className = 'badge bg-success fs-6 px-3 py-2';
+                badge.textContent = '✅ Completed';
+            }
+        }
+    </script>
+}

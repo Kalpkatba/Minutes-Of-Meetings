@@ -8,7 +8,14 @@ namespace MOM_5.Controllers
 {
     public class MOM_StaffController : Controller
     {
-        #region
+        private IConfiguration configuration;
+
+        public MOM_StaffController(IConfiguration _configuration)
+        {
+            configuration = _configuration;
+        }
+
+        #region DropdowmDept
         public List<SelectListItem> DropdowmDept()
         {
             List<SelectListItem> deptList = new List<SelectListItem>();
@@ -37,7 +44,7 @@ namespace MOM_5.Controllers
         }
         #endregion
 
-        #region
+        #region StaffList
         public IActionResult StaffList(MOM_DepartmentModel dept)
         {
             try
@@ -60,10 +67,12 @@ namespace MOM_5.Controllers
                     MOM_StaffModel staff = new MOM_StaffModel();
                     staff.StaffID = Convert.ToInt32(Reader["StaffID"]);
                     staff.StaffName = Reader["StaffName"].ToString();
-                    staff.DepartmentName = Reader["DepartmentName"].ToString();
+                    staff.DepartmentName = Reader["DepartmentName"]?.ToString();
                     staff.Mobile = Reader["Mobile"].ToString();
                     staff.Email = Reader["Email"].ToString();
                     staff.Remarks = Reader["Remarks"].ToString();
+                    staff.Created = Convert.ToDateTime(Reader["Created"]);
+                    staff.Created = Convert.ToDateTime(Reader["Modified"]);
 
                     staffList.Add(staff);
                 }
@@ -79,94 +88,104 @@ namespace MOM_5.Controllers
                 throw ex;
             }
         }
-        #endregion
+        #endregion StaffAddEdit
 
-        #region
-        public IActionResult StaffAddEdit(MOM_StaffModel staff)
+        #region StaffAddEdit
+        public IActionResult StaffAddEdit(int? id)
         {
+            MOM_StaffModel model = new MOM_StaffModel();
             ViewBag.DepartmentList = DropdowmDept();
-            try
+
+            if (id != null) // EDIT MODE
             {
-                staff.Created = DateTime.UtcNow;
-                staff.Modified = DateTime.UtcNow;
+                string connectionString = this.configuration.GetConnectionString("ConnectionString");
+                SqlConnection connection = new SqlConnection(connectionString);
 
-                if (!ModelState.IsValid)
+                connection.Open();
+
+                SqlCommand command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PR_MOM_Staff_SelectByPK";
+                command.Parameters.AddWithValue("@StaffID", id);
+
+                SqlDataReader reader = command.ExecuteReader();
+                DataTable datatable = new DataTable();
+                datatable.Load(reader);
+
+                if (datatable.Rows.Count > 0)
                 {
-                    return View("StaffAddEdit", staff);
+                    DataRow row = datatable.Rows[0];
+                    model.StaffID = Convert.ToInt32(row["StaffID"]);
+                    model.StaffName = row["StaffName"].ToString();
+                    model.DepartmentID = Convert.ToInt32(row["DepartmentID"]);
+                    model.Email = row["Email"].ToString();
+                    model.Mobile = row["Mobile"].ToString();
+                    model.Remarks = row["Remarks"].ToString();
+                    model.Created = Convert.ToDateTime(row["Created"]);
+                    model.Modified = Convert.ToDateTime(row["Modified"]);
                 }
-
-                SqlConnection con = new SqlConnection("Server=LAPTOP-NQ0ROPVF\\SQLEXPRESS;Database=MOM_DB;Trusted_Connection=True;TrustServerCertificate=True;");
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.StoredProcedure;
-
-
-                con.Open();
-
-                if (staff.StaffID == 0)
-                {
-                    staff.Created = DateTime.UtcNow;
-                    staff.Modified = DateTime.UtcNow;
-
-                    cmd.CommandText = "PR_MOM_Staff_Insert";
-                    cmd.Parameters.AddWithValue("@StaffID", staff.StaffID);
-                    cmd.Parameters.AddWithValue("@DepartmentID", staff.DepartmentID);
-                    cmd.Parameters.AddWithValue("@StaffName", staff.StaffName);
-                    cmd.Parameters.AddWithValue("@Mobile", staff.Mobile);
-                    cmd.Parameters.AddWithValue("@Email", staff.Email);
-                    cmd.Parameters.AddWithValue("@Remarks", staff.Remarks);
-                    cmd.Parameters.AddWithValue("@Created", staff.Created);
-                    cmd.Parameters.AddWithValue("@Modified", staff.Modified);
-                }
-                else
-                {
-                    staff.Modified = DateTime.UtcNow;
-                    cmd.CommandText = "PR_MOM_Staff_UpdateByPK";
-                    cmd.Parameters.AddWithValue("@StaffID", staff.StaffID);
-                    cmd.Parameters.AddWithValue("@DepartmentID", staff.DepartmentID);
-                    cmd.Parameters.AddWithValue("@StaffName", staff.StaffName);
-                    cmd.Parameters.AddWithValue("@Mobile", staff.Mobile);
-                    cmd.Parameters.AddWithValue("@Email", staff.Email);
-                    cmd.Parameters.AddWithValue("@Remarks", staff.Remarks);
-                    cmd.Parameters.AddWithValue("@Modified", staff.Modified);
-                }
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                return RedirectToAction("StaffList");
             }
-            catch (Exception ex)
-            {
-                return View("StaffAddEdit", staff);
-            }
+            return View(model);
+
         }
         #endregion
 
-        #region
+        #region StaffSave
+        public IActionResult StaffSave(MOM_StaffModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string connectionString = this.configuration.GetConnectionString("ConnectionString");
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+
+                if (model.StaffID == 0)
+                {
+                    command.CommandText = "PR_MOM_Staff_Insert";
+                }
+                else
+                {
+                    command.CommandText = "PR_MOM_Staff_UpdateByPK";
+                    command.Parameters.Add("@StaffID", SqlDbType.Int).Value = model.StaffID;
+                }
+                command.Parameters.Add("@StaffName", SqlDbType.VarChar).Value = model.StaffName;
+                command.Parameters.Add("@DepartmentID", SqlDbType.Int).Value = model.DepartmentID;
+                command.Parameters.Add("@Email", SqlDbType.VarChar).Value = model.Email;
+                command.Parameters.Add("@Mobile", SqlDbType.VarChar).Value = model.Mobile;
+                command.Parameters.Add("@Remarks", SqlDbType.VarChar).Value = model.Remarks;
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return RedirectToAction("StaffList");
+
+            }
+            return View("StaffAddEdit", model);
+        }
+        #endregion
+
+        #region DeleteStaff
         public IActionResult DeleteStaff(int id)
         {
+            //Console.WriteLine(id + " is the id to delete");
             try
             {
-                SqlConnection con = new SqlConnection("Server=LAPTOP-NQ0ROPVF\\SQLEXPRESS;Database=MOM_DB;Trusted_Connection=True;TrustServerCertificate=True;");
+                string connectionString = this.configuration.GetConnectionString("ConnectionString");
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    //Console.WriteLine("APP DB = " + connection.Database);
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "PR_MOM_Staff_DeleteByPK";
+                    command.Parameters.Add("@StaffID", SqlDbType.Int).Value = id;
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = "PR_MOM_Staff_DeleteByPK";
-                cmd.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
 
-                SqlParameter p = new SqlParameter();
-                p.ParameterName = "@StaffID";
-                p.SqlDbType = SqlDbType.Int;
-                p.Value = id;
 
-                cmd.Parameters.Add(p);
-
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                TempData["Success"] = "Deleted Successfully.";
+                TempData["Success"] = "Staff Member Deleted Successfully.";
                 return RedirectToAction("StaffList");
             }
             catch (Exception)

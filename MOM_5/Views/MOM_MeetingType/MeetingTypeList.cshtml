@@ -1,15 +1,15 @@
 ﻿@model List<MOM_MeetingTypeModel>
 
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-12">
-        <div class="card">
+        <div class="card shadow-lg">
+            <div class="card-header bg-theme-header d-flex justify-content-between align-items-center fw-bold">
+                <h4 class="card-title mb-0 ps-2">Meeting Types</h4>
+                <a asp-controller="MOM_MeetingType" asp-action="MeetingTypeAddEdit" class="btn btn-theme-header fw-bold">
+                    <i class="bi bi-plus-circle"></i> Add Meeting Type
+                </a>
+            </div>
             <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="card-title">Meeting Types</h4>
-                    <a asp-controller="MOM_MeetingType" asp-action="MeetingTypeAddEdit" class="btn btn-primary">
-                        <i class="bi bi-plus-circle"></i> Add Meeting Type
-                    </a>
-                </div>
 
                 <div class="mb-3">
                     <input type="text" id="searchInput" class="form-control" placeholder="Search meeting types...">

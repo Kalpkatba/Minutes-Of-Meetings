@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=100%, initial-scale=1, shrink-to-fit=no">
     <title>@ViewData["Title"] - MOM System</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/assets/vendors/owl-carousel-2/owl.carousel.min.css">
     <link rel="stylesheet" href="~/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
     <!-- End plugin css for this page -->
+    <link rel="stylesheet" href="~/css/site.css" />
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
@@ -50,60 +51,39 @@
       </div> *@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            @{
+                var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+                var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+            }
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
                 <a class="sidebar-brand brand-logo" asp-controller="Home" asp-action="Index">
-                    <i class="bi bi-calendar-check" style="font-size: 2rem; color: #fff; margin-right: 10px;"></i>
-                    <span style="color: #fff; font-weight: bold; font-size: 1.2rem;">MOM System</span>
+                    <i class="bi bi-calendar-check system-logo" style="font-size: 2rem; margin-right: 10px;"></i>
+                    <span class="system-title" style="font-weight: bold; font-size: 1.2rem;">MOM System</span>
                 </a>
                 <a class="sidebar-brand brand-logo-mini" asp-controller="Home" asp-action="Index">
-                    <i class="bi bi-calendar-check" style="font-size: 1.5rem; color: #fff;"></i>
+                    <i class="bi bi-calendar-check system-logo" style="font-size: 1.5rem;"></i>
                 </a>
             </div>
             <ul class="nav">
                 <li class="nav-item profile">
-                    <div class="profile-desc">
-                        <div class="profile-pic">
+                    <div class="profile-desc" style="position: relative;">
+                        <div class="profile-pic" id="sidebarProfileToggle" style="cursor: pointer;">
                             <div class="count-indicator">
-                                <i class="bi bi-person-circle" style="font-size: 2rem; color: #fff;"></i>
+                                <i class="bi bi-person-circle sidebar-user-icon" style="font-size: 2rem;"></i>
                                 <span class="count bg-success"></span>
                             </div>
                             <div class="profile-name">
-                                <h5 class="mb-0 font-weight-normal">@(User.Identity.Name ?? "User")</h5>
+                                <h5 class="mb-0 font-weight-normal sidebar-user-name">@(User.Identity.Name ?? "User")</h5>
                             </div>
                         </div>
-                        <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-                            <a href="#" class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-cog text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
-                                </div>
+                        <div class="sidebar-profile-dropdown" id="sidebarProfileMenu" style="display: none; position: absolute; left: 0; right: 0; z-index: 999; background: #191c24; border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); overflow: hidden; margin-top: 5px;">
+                            <a href="#" class="d-flex align-items-center px-3 py-2 text-decoration-none" style="color: #fff;" onmouseover="this.style.backgroundColor='rgba(25,135,84,0.2)'" onmouseout="this.style.backgroundColor='transparent'">
+                                <i class="mdi mdi-cog text-success me-2"></i>
+                                <span>Settings</span>
                             </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-onepassword  text-info"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-calendar-today text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-                                </div>
+                            <a asp-controller="Login" asp-action="Login" class="d-flex align-items-center px-3 py-2 text-decoration-none" style="color: #fff;" onmouseover="this.style.backgroundColor='rgba(220,53,69,0.2)'" onmouseout="this.style.backgroundColor='transparent'">
+                                <i class="mdi mdi-logout text-danger me-2"></i>
+                                <span>Log Out</span>
                             </a>
                         </div>
                     </div>
@@ -111,15 +91,16 @@
                 <li class="nav-item nav-category">
                     <span class="nav-link">Navigation</span>
                 </li>
-                <li class="nav-item menu-items">
+                <li class="nav-item menu-items @(currentController == "Home" ? "active" : "")">
                     <a class="nav-link" asp-controller="Home" asp-action="Index">
                         <span class="menu-icon">
                             <i class="mdi mdi-speedometer"></i>
                         </span>
                         <span class="menu-title">Dashboard</span>
+                        <i class="menu-arrow"></i>
                     </a>
                 </li>
-                <li class="nav-item menu-items">
+                <li class="nav-item menu-items @(currentController == "MOM_Department" ? "active" : "")">
                     <a class="nav-link" asp-controller="MOM_Department" asp-action="DepartmentList">
                         <span class="menu-icon">
                             <i class="mdi mdi-laptop"></i>
@@ -128,7 +109,7 @@
                         <i class="menu-arrow"></i>
                     </a>
                 </li>
-                <li class="nav-item menu-items">
+                <li class="nav-item menu-items @(currentController == "MOM_MeetingType" ? "active" : "")">
                     <a class="nav-link" asp-controller="MOM_MeetingType" asp-action="MeetingTypeList">
                         <span class="menu-icon">
                             <i class="mdi mdi-table-large"></i>
@@ -137,7 +118,7 @@
                         <i class="menu-arrow"></i>
                     </a>
                 </li>
-                <li class="nav-item menu-items">
+                <li class="nav-item menu-items @(currentController == "MOM_MeetingVenue" ? "active" : "")">
                     <a class="nav-link" asp-controller="MOM_MeetingVenue" asp-action="MeetingVenueList">
                         <span class="menu-icon">
                             <i class="mdi mdi-chart-bar"></i>
@@ -146,7 +127,7 @@
                         <i class="menu-arrow"></i>
                     </a>
                 </li>
-                <li class="nav-item menu-items">
+                <li class="nav-item menu-items @(currentController == "MOM_Staff" ? "active" : "")">
                     <a class="nav-link" asp-controller="MOM_Staff" asp-action="StaffList">
                         <span class="menu-icon">
                             <i class="mdi mdi-contacts"></i>
@@ -155,15 +136,15 @@
                         <i class="menu-arrow"></i>
                     </a>
                 </li>
-                <li class="nav-item menu-items">
-                    <a class="nav-link" asp-controller="MOM_Meetings" asp-action="QuickSchedule">
+                <li class="nav-item menu-items @(currentController == "MOM_Meetings" && currentAction == "MeetingAddEdit" ? "active" : "")">
+                    <a class="nav-link" asp-controller="MOM_Meetings" asp-action="MeetingAddEdit">
                         <span class="menu-icon">
                             <i class="mdi mdi-calendar-plus"></i>
                         </span>
                         <span class="menu-title">Schedule Meeting</span>
                     </a>
                 </li>
-                <li class="nav-item menu-items">
+                <li class="nav-item menu-items @(currentController == "MOM_Meetings" && currentAction == "MeetingList" ? "active" : "")">
                     <a class="nav-link" asp-controller="MOM_Meetings" asp-action="MeetingList">
                         <span class="menu-icon">
                             <i class="mdi mdi-calendar-multiple"></i>
@@ -171,14 +152,7 @@
                         <span class="menu-title">All Meetings</span>
                     </a>
                 </li>
-                <li class="nav-item menu-items">
-                    <a class="nav-link" asp-controller="MOM_MeetingMember" asp-action="MeetingMemberList">
-                        <span class="menu-icon">
-                            <i class="mdi mdi-account-multiple"></i>
-                        </span>
-                        <span class="menu-title">Meeting Members</span>
-                    </a>
-                </li>
+
             </ul>
         </nav>
         <!-- partial -->
@@ -202,40 +176,30 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav navbar-nav-right">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
-                                <div class="navbar-profile">
-                                    <i class="bi bi-person-circle" style="font-size: 2rem; color: #6f42c1;"></i>
-                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">@(User.Identity.Name ?? "User")</p>
-                                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                        <li class="nav-item">
+                            <button id="themeToggleBtn" class="btn btn-sm" style="border: none; font-size: 1.3rem; background: transparent;">
+                                <i class="bi bi-sun"></i>
+                            </button>
+                        </li>
+                        <li class="nav-item" style="position: relative;">
+                            <a class="nav-link d-flex align-items-center" id="navbarProfileToggle" href="#" style="cursor: pointer;">
+                                <div class="navbar-profile d-flex align-items-center">
+                                    <i class="bi bi-person-circle navbar-user-icon" style="font-size: 2rem;"></i>
+                                    <p class="mb-0 d-none d-sm-block navbar-profile-name ms-2">@(User.Identity.Name ?? "User")</p>
                                 </div>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                                <h6 class="p-3 mb-0">Profile</h6>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
-                                    <div class="preview-thumbnail">
-                                        <div class="preview-icon bg-dark rounded-circle">
-                                            <i class="mdi mdi-cog text-success"></i>
-                                        </div>
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject mb-1">Settings</p>
-                                    </div>
+                            <div id="navbarProfileMenu" style="display: none; position: absolute; right: 0; top: 100%; z-index: 9999; min-width: 200px; background: #191c24; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); overflow: hidden;">
+                                <div class="px-3 py-2" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <h6 class="mb-0" style="color: #fff;">Profile</h6>
+                                </div>
+                                <a href="#" class="d-flex align-items-center px-3 py-2 text-decoration-none" style="color: #fff;" onmouseover="this.style.backgroundColor='rgba(25,135,84,0.2)'" onmouseout="this.style.backgroundColor='transparent'">
+                                    <i class="mdi mdi-cog text-success me-2"></i>
+                                    <span>Settings</span>
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item" asp-controller="Home" asp-action="Logout">
-                                    <div class="preview-thumbnail">
-                                        <div class="preview-icon bg-dark rounded-circle">
-                                            <i class="mdi mdi-logout text-danger"></i>
-                                        </div>
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject mb-1">Log Out</p>
-                                    </div>
+                                <a asp-controller="Home" asp-action="Logout" class="d-flex align-items-center px-3 py-2 text-decoration-none" style="color: #fff;" onmouseover="this.style.backgroundColor='rgba(220,53,69,0.2)'" onmouseout="this.style.backgroundColor='transparent'">
+                                    <i class="mdi mdi-logout text-danger me-2"></i>
+                                    <span>Log Out</span>
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <p class="p-3 mb-0 text-center">Advanced settings</p>
                             </div>
                         </li>
                     </ul>
@@ -289,6 +253,67 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ── Theme Toggle ──
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = themeToggleBtn.querySelector('i');
+            const currentTheme = localStorage.getItem('theme');
+
+            if (currentTheme === 'light') {
+                document.body.classList.add('light-mode');
+                themeIcon.classList.replace('bi-sun', 'bi-moon');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                if (document.body.classList.contains('light-mode')) {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.replace('bi-sun', 'bi-moon');
+                } else {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.replace('bi-moon', 'bi-sun');
+                }
+            });
+
+            // ── Profile Dropdowns (vanilla JS – no Bootstrap dependency) ──
+            const sidebarToggle = document.getElementById('sidebarProfileToggle');
+            const sidebarMenu = document.getElementById('sidebarProfileMenu');
+            const navbarToggle = document.getElementById('navbarProfileToggle');
+            const navbarMenu = document.getElementById('navbarProfileMenu');
+
+            function toggleMenu(menu) {
+                const isOpen = menu.style.display === 'block';
+                // Close all menus first
+                sidebarMenu.style.display = 'none';
+                navbarMenu.style.display = 'none';
+                // Toggle the clicked one
+                if (!isOpen) menu.style.display = 'block';
+            }
+
+            sidebarToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu(sidebarMenu);
+            });
+
+            navbarToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu(navbarMenu);
+            });
+
+            // Close dropdowns when clicking anywhere else
+            document.addEventListener('click', () => {
+                sidebarMenu.style.display = 'none';
+                navbarMenu.style.display = 'none';
+            });
+
+            // Prevent closing when clicking inside the menu itself
+            sidebarMenu.addEventListener('click', (e) => e.stopPropagation());
+            navbarMenu.addEventListener('click', (e) => e.stopPropagation());
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

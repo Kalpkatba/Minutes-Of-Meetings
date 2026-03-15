@@ -1,31 +1,374 @@
+:root {
+    /* User provided reference colors */
+    --yellow-500: #eab308;
+    --yellow-600: #ca8a04;
+    --yellow-700: #a16207;
+
+    --green-500: #22c55e;
+    --green-600: #16a34a;
+    --green-700: #15803d;
+    --green-500: ;
+
+    --teal-500: #14b8a6;
+    --teal-600: #0d9488;
+    --teal-700: #0f766e;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.form-floating>.form-control-plaintext::placeholder,
+.form-floating>.form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.form-floating>.form-control-plaintext:focus::placeholder,
+.form-floating>.form-control:focus::placeholder {
+    text-align: start;
 }
+
+/* --- Simple Animations & Hover Effects --- */
+
+/* Button hover animation */
+.btn {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Card hover animation */
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out !important;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Premium Table Styling */
+.table {
+    border-collapse: separate !important;
+    border-spacing: 0 10px !important;
+}
+
+.table thead th {
+    border: none !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    padding: 15px !important;
+    opacity: 0.8;
+}
+
+.table tbody tr {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 10px;
+}
+
+.table tbody td {
+    border: none !important;
+    padding: 18px 15px !important;
+    vertical-align: middle;
+}
+
+.table tbody tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.table tbody tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.table tbody tr:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(25, 135, 84, 0.25) !important;
+    background-color: rgba(34, 197, 94, 0.05) !important;
+}
+
+/* Sidebar navigation active link animation */
+.sidebar .nav .nav-item.active>.nav-link {
+    background-color: var(--green) !important;
+    color: #fff !important;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(13, 148, 136, 0.4) !important;
+    /* teal-600 shadow */
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar .nav .nav-item .nav-link {
+    transition: all 0.3s ease !important;
+}
+
+/* Sidebar nav item hover */
+.sidebar .nav .nav-item:not(.active) .nav-link:hover {
+    background-color: rgba(20, 184, 166, 0.1) !important;
+    /* teal-500 very transparent */
+    color: var(--green) !important;
+    transform: translateX(5px);
+    border-radius: 4px;
+}
+
+/* Navbar top right icons hover */
+.navbar .navbar-nav .nav-item .nav-link i {
+    transition: transform 0.2s ease-in-out !important;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover i {
+    transform: scale(1.2);
+}
+
+/* Custom Green Theme for Headers and Buttons */
+.bg-theme-header {
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+    color: #ffffff !important;
+}
+
+.btn-theme-header {
+    background-color: transparent !important;
+    color: #ffffff !important;
+}
+
+.btn-theme-header:hover {
+    color: #e0e0e0 !important;
+}
+
+.btn-theme {
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+    color: #ffffff !important;
+}
+
+.btn-theme:hover {
+    background-color: #157347 !important;
+    border-color: #146c43 !important;
+    color: #ffffff !important;
+}
+
+/* --- LIGHT MODE OVERRIDES --- */
+body.light-mode {
+    background-color: #f4f5f7 !important;
+    color: #212529 !important;
+}
+
+body.light-mode .content-wrapper,
+body.light-mode .page-body-wrapper {
+    background-color: #f4f5f7 !important;
+}
+
+body.light-mode .sidebar {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .sidebar-brand-wrapper {
+    background-color: #ffffff !important;
+}
+
+body.light-mode .navbar {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .sidebar .nav .nav-item .nav-link {
+    color: #4A4A4A !important;
+}
+
+body.light-mode .sidebar .nav .nav-item .nav-link i.menu-icon {
+    color: #4A4A4A !important;
+}
+
+body.light-mode .sidebar .nav .nav-item.active>.nav-link {
+    background-color: #198754 !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(25, 135, 84, 0.6) !important;
+}
+
+body.light-mode .card {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border: 1px solid #e0e0e0 !important;
+}
+
+body.light-mode .table,
+body.light-mode .table td {
+    color: #212529 !important;
+}
+
+body.light-mode .table thead th {
+    color: #212529 !important;
+    border: none !important;
+}
+
+body.light-mode .table tbody tr {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-mode .table tbody tr:hover {
+    background-color: rgba(25, 135, 84, 0.1) !important;
+}
+
+body.light-mode .form-control,
+body.light-mode .form-select {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border: 1px solid #ced4da !important;
+}
+
+body.light-mode .form-control:focus,
+body.light-mode .form-select:focus {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border-color: #198754 !important;
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25) !important;
+}
+
+body.light-mode .form-label {
+    color: #212529 !important;
+}
+
+body.light-mode .text-muted {
+    color: #6c757d !important;
+}
+
+/* Sidebar brand / logo in light mode */
+.sidebar-brand span.system-title {
+    color: #fff;
+}
+
+body.light-mode .sidebar-brand span.system-title {
+    color: #212529 !important;
+}
+
+.sidebar-brand i.system-logo {
+    color: #fff;
+}
+
+body.light-mode .sidebar-brand i.system-logo {
+    color: #198754 !important;
+}
+
+/* Theme Toggle Button */
+#themeToggleBtn {
+    color: #fff;
+}
+
+body.light-mode #themeToggleBtn {
+    color: #212529;
+}
+
+/* User Profile Elements */
+.sidebar-user-icon {
+    color: #ffffff;
+}
+body.light-mode .sidebar-user-icon {
+    color: #198754 !important;
+}
+
+/* Remove default Bootstrap caret from top-nav user profile */
+.navbar .nav-item.dropdown .dropdown-toggle::after {
+    display: none !important;
+}
+
+.navbar-user-icon {
+    color: #198754;
+}
+body.light-mode .navbar-user-icon {
+    color: #198754 !important;
+}
+
+body.light-mode .sidebar-user-name,
+body.light-mode .navbar-profile-name {
+    color: #212529 !important;
+}
+
+/* Footer overrides */
+body.light-mode .footer {
+    background-color: #ffffff !important;
+    border-top: 1px solid #dee2e6 !important;
+}
+body.light-mode .footer .text-muted {
+    color: #212529 !important;
+}
+
+/* Rounded Forms, Cards, and Buttons (10px) to Match Tables */
+.form-control, .form-select, .form-control-plaintext {
+    border-radius: 10px !important;
+}
+
+.input-group > .form-control {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+}
+
+.input-group > .btn {
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+}
+
+.btn {
+    border-radius: 10px !important;
+}
+
+.card {
+    border-radius: 10px !important;
+}
+
+.card-header {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+
+/* Light mode custom profile dropdown menus */
+body.light-mode .sidebar-profile-dropdown,
+body.light-mode #navbarProfileMenu {
+    background: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.light-mode .sidebar-profile-dropdown a,
+body.light-mode #navbarProfileMenu a {
+    color: #212529 !important;
+}
+
+body.light-mode #navbarProfileMenu .px-3.py-2 h6 {
+    color: #212529 !important;
+}
+
+body.light-mode #navbarProfileMenu .px-3.py-2 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}

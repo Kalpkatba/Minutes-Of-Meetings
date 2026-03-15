@@ -1,43 +1,205 @@
-﻿@{
+@{
     ViewData["Title"] = "Dashboard";
+
+    string[] typeLabels = ViewBag.TypeLabels ?? new string[0];
+    int[] typeCounts = ViewBag.TypeCounts ?? new int[0];
+    string[] deptLabels = ViewBag.DeptLabels ?? new string[0];
+    int[] deptCounts = ViewBag.DeptCounts ?? new int[0];
 }
 
 <div class="row">
-    <div class="col-md-3">
-        <div class="card">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="fw-bold mb-1">Dashboard</h3>
+                <p class="text-muted mb-0">Meeting management overview and analytics</p>
+            </div>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    @* Total Meetings *@
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #4e73df !important;">
             <div class="card-body">
-                <h5 class="card-title">Total Meetings</h5>
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
+                         style="width: 52px; height: 52px; background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <i class="bi bi-calendar-event text-white" style="font-size: 1.4rem;"></i>
+                    </div>
+                    <div>
+                        <h2 class="fw-bold mb-0">@ViewBag.TotalMeetings</h2>
+                        <span class="text-muted text-uppercase fw-semibold" style="font-size: 0.75rem; letter-spacing: 0.05em;">Total Meetings</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card">
+
+    @* Upcoming Meetings *@
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #f6c23e !important;">
             <div class="card-body">
-                <h5 class="card-title">Departments</h5>
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
+                         style="width: 52px; height: 52px; background: linear-gradient(135deg, #f6c23e, #f4a62a);">
+                        <i class="bi bi-clock text-white" style="font-size: 1.4rem;"></i>
+                    </div>
+                    <div>
+                        <h2 class="fw-bold mb-0">@ViewBag.PendingMeetings</h2>
+                        <span class="text-muted text-uppercase fw-semibold" style="font-size: 0.75rem; letter-spacing: 0.05em;">Upcoming</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card">
+
+    @* Completed *@
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #1cc88a !important;">
             <div class="card-body">
-                <h5 class="card-title">Staff Members</h5>
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
+                         style="width: 52px; height: 52px; background: linear-gradient(135deg, #1cc88a, #13a06d);">
+                        <i class="bi bi-check-circle text-white" style="font-size: 1.4rem;"></i>
+                    </div>
+                    <div>
+                        <h2 class="fw-bold mb-0">@ViewBag.CompletedMeetings</h2>
+                        <span class="text-muted text-uppercase fw-semibold" style="font-size: 0.75rem; letter-spacing: 0.05em;">Completed</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card">
+
+    @* Cancelled *@
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #e74a3b !important;">
             <div class="card-body">
-                <h5 class="card-title">Meeting Types</h5>
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
+                         style="width: 52px; height: 52px; background: linear-gradient(135deg, #e74a3b, #c0392b);">
+                        <i class="bi bi-x-circle text-white" style="font-size: 1.4rem;"></i>
+                    </div>
+                    <div>
+                        <h2 class="fw-bold mb-0">@ViewBag.CancelledMeetings</h2>
+                        <span class="text-muted text-uppercase fw-semibold" style="font-size: 0.75rem; letter-spacing: 0.05em;">Cancelled</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row mt-4">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
+@* ── Pie Charts ── *@
+<div class="row">
+    @* Meetings by Types *@
+
+    <div class="col-xl-6 col-lg-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-theme-header border-0 pt-4 pb-0">
+                <h5 class="fw-bold mb-3">Meetings by Type</h5>
+            </div>
+            <div class="card-body d-flex align-items-center justify-content-center">
+                <div style="position: relative; width: 100%; max-width: 350px;">
+                    <canvas id="meetingsByTypeChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Meetings by Departments *@
+    <div class="col-xl-6 col-lg-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-theme-header border-0 pt-4 pb-0">
+                <h5 class="fw-bold mb-3">Meetings by Department</h5>
+            </div>
+            <div class="card-body d-flex align-items-center justify-content-center">
+                <div style="position: relative; width: 100%; max-width: 350px;">
+                    <canvas id="meetingsByDeptChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        // ── Color palette ──
+        var chartColors = [
+            '#4e73df', '#1cc88a', '#f6c23e', '#e74a3b', '#36b9cc',
+            '#858796', '#6f42c1', '#fd7e14', '#20c997', '#e83e8c',
+            '#007bff', '#6610f2', '#17a2b8', '#28a745', '#dc3545'
+        ];
+
+        // ── Meetings by Type — Doughnut ──
+        var typeLabels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(typeLabels));
+        var typeCounts = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(typeCounts));
+
+        if (typeLabels.length > 0) {
+            new Chart(document.getElementById('meetingsByTypeChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: typeLabels,
+                    datasets: [{
+                        data: typeCounts,
+                        backgroundColor: chartColors.slice(0, typeLabels.length),
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        hoverBorderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutout: '50%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { padding: 15, usePointStyle: true, pointStyle: 'circle' }
+                        }
+                    }
+                }
+            });
+        } else {
+            document.getElementById('meetingsByTypeChart').parentElement.innerHTML =
+                '<p class="text-muted text-center">No meeting data available</p>';
+        }
+
+        // ── Meetings by Department — Doughnut ──
+        var deptLabels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(deptLabels));
+        var deptCounts = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(deptCounts));
+
+        if (deptLabels.length > 0) {
+            new Chart(document.getElementById('meetingsByDeptChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: deptLabels,
+                    datasets: [{
+                        data: deptCounts,
+                        backgroundColor: chartColors.slice(0, deptLabels.length),
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        hoverBorderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutout: '50%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { padding: 15, usePointStyle: true, pointStyle: 'circle' }
+                        }
+                    }
+                }
+            });
+        } else {
+            document.getElementById('meetingsByDeptChart').parentElement.innerHTML =
+                '<p class="text-muted text-center">No meeting data available</p>';
+        }
+    </script>
+}

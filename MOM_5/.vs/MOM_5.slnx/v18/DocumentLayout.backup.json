@@ -3,32 +3,28 @@
   "WorkspaceRootPath": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\controllers\\mom_departmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:controllers\\mom_departmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\views\\mom_department\\departmentlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:views\\mom_department\\departmentlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\models\\mom_departmentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:models\\mom_departmentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\views\\mom_meetingtype\\meetingtypeaddedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:views\\mom_meetingtype\\meetingtypeaddedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\views\\mom_department\\departmentaddedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:views\\mom_department\\departmentaddedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\views\\mom_meetings\\meetingaddedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:views\\mom_meetings\\meetingaddedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\views\\mom_meetingmember\\meetingmemberaddedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:views\\mom_meetingmember\\meetingmemberaddedit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\views\\mom_meetingmember\\meetingmemberlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:views\\mom_meetingmember\\meetingmemberlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\controllers\\mom_meetingmembercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:controllers\\mom_meetingmembercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\views\\mom_meetings\\meetinglist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:views\\mom_meetings\\meetinglist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|d:\\kalp_du\\sem_6\\dotnet\\mom_5\\controllers\\mom_meetingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FADB041B-7F90-D6A1-BB80-BA9DF1457140}|MOM_5.csproj|solutionrelative:controllers\\mom_meetingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,97 +34,81 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MOM_DepartmentController.cs",
-              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Controllers\\MOM_DepartmentController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MOM_DepartmentController.cs",
-              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Controllers\\MOM_DepartmentController.cs*",
-              "RelativeToolTip": "Controllers\\MOM_DepartmentController.cs*",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAQwHEAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T07:47:10.851Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MOM_DepartmentModel.cs",
-              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Models\\MOM_DepartmentModel.cs",
-              "RelativeDocumentMoniker": "Models\\MOM_DepartmentModel.cs",
-              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Models\\MOM_DepartmentModel.cs",
-              "RelativeToolTip": "Models\\MOM_DepartmentModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T07:51:35.31Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DepartmentAddEdit.cshtml",
-              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_Department\\DepartmentAddEdit.cshtml",
-              "RelativeDocumentMoniker": "Views\\MOM_Department\\DepartmentAddEdit.cshtml",
-              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_Department\\DepartmentAddEdit.cshtml",
-              "RelativeToolTip": "Views\\MOM_Department\\DepartmentAddEdit.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-18T07:30:43.671Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "MeetingMemberList.cshtml",
-              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_MeetingMember\\MeetingMemberList.cshtml",
-              "RelativeDocumentMoniker": "Views\\MOM_MeetingMember\\MeetingMemberList.cshtml",
-              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_MeetingMember\\MeetingMemberList.cshtml",
-              "RelativeToolTip": "Views\\MOM_MeetingMember\\MeetingMemberList.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-18T07:14:45.017Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MeetingMemberAddEdit.cshtml",
-              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_MeetingMember\\MeetingMemberAddEdit.cshtml",
-              "RelativeDocumentMoniker": "Views\\MOM_MeetingMember\\MeetingMemberAddEdit.cshtml",
-              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_MeetingMember\\MeetingMemberAddEdit.cshtml",
-              "RelativeToolTip": "Views\\MOM_MeetingMember\\MeetingMemberAddEdit.cshtml",
-              "ViewState": "AgIAACoAAAAAAAAAAAAqwEQAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-18T07:14:43.596Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MOM_MeetingMemberController.cs",
-              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Controllers\\MOM_MeetingMemberController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MOM_MeetingMemberController.cs",
-              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Controllers\\MOM_MeetingMemberController.cs",
-              "RelativeToolTip": "Controllers\\MOM_MeetingMemberController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAGYAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T03:29:13.018Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
               "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAJcAAAAAAAAAAAAwwJ4AAABfAAAAAAAAAA==",
+              "ViewState": "AgIAAN8AAAAAAAAAAAAkwD4BAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-14T12:30:46.973Z"
+              "WhenOpened": "2026-02-28T15:13:36.687Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MeetingTypeAddEdit.cshtml",
+              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_MeetingType\\MeetingTypeAddEdit.cshtml",
+              "RelativeDocumentMoniker": "Views\\MOM_MeetingType\\MeetingTypeAddEdit.cshtml",
+              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_MeetingType\\MeetingTypeAddEdit.cshtml",
+              "RelativeToolTip": "Views\\MOM_MeetingType\\MeetingTypeAddEdit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-11T14:42:43.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DepartmentList.cshtml",
+              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_Department\\DepartmentList.cshtml",
+              "RelativeDocumentMoniker": "Views\\MOM_Department\\DepartmentList.cshtml",
+              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_Department\\DepartmentList.cshtml",
+              "RelativeToolTip": "Views\\MOM_Department\\DepartmentList.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-10T05:13:52.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MOM_MeetingsController.cs",
+              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Controllers\\MOM_MeetingsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MOM_MeetingsController.cs",
+              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Controllers\\MOM_MeetingsController.cs",
+              "RelativeToolTip": "Controllers\\MOM_MeetingsController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T03:42:21.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MeetingAddEdit.cshtml",
+              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_Meetings\\MeetingAddEdit.cshtml",
+              "RelativeDocumentMoniker": "Views\\MOM_Meetings\\MeetingAddEdit.cshtml",
+              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_Meetings\\MeetingAddEdit.cshtml",
+              "RelativeToolTip": "Views\\MOM_Meetings\\MeetingAddEdit.cshtml",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAHIAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-28T15:05:24.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MeetingList.cshtml",
+              "DocumentMoniker": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_Meetings\\MeetingList.cshtml",
+              "RelativeDocumentMoniker": "Views\\MOM_Meetings\\MeetingList.cshtml",
+              "ToolTip": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\Views\\MOM_Meetings\\MeetingList.cshtml",
+              "RelativeToolTip": "Views\\MOM_Meetings\\MeetingList.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAAYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-24T14:56:44.491Z"
             }
           ]
         }

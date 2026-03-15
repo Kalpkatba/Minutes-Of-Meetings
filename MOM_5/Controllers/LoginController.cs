@@ -17,15 +17,16 @@ namespace MOM_5.Controllers
         }
         #endregion
 
-        #region
-        public IActionResult SignIn()
-        {
-            return View();
-        }
-        #endregion
+        //#region
+        //public IActionResult Signup()
+        //{
+        //    return View();
+        //}
+        //#endregion
 
         #region
         public IActionResult Register()
+
         {
             return View();
         }
@@ -59,6 +60,7 @@ namespace MOM_5.Controllers
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         using (DataTable dataTable = new DataTable())
                         {
+
                             dataTable.Load(sqlDataReader);
 
                             if (dataTable.Rows.Count > 0)

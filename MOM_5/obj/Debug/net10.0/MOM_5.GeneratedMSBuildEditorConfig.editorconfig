@@ -50,16 +50,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdNZW1iZXJcTWVldGluZ01lbWJlckxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Meetings/MeeetingAddEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdzXE1lZWV0aW5nQWRkRWRpdC5jc2h0bWw=
+[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Meetings/MeetingAddEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdzXE1lZXRpbmdBZGRFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Meetings/MeetingList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdzXE1lZXRpbmdMaXN0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_Meetings/QuickSchedule.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTU9NX01lZXRpbmdzXFF1aWNrU2NoZWR1bGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Kalp_DU/SEM_6/DotNet/MOM_5/Views/MOM_MeetingType/MeetingTypeAddEdit.cshtml]

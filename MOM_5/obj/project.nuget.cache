@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Owl5x+eY6CQ=",
+  "dgSpecHash": "bmnE6RPksSM=",
   "success": true,
   "projectFilePath": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\MOM_5.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,7 @@
     {
       "code": "NU1900",
       "level": "Warning",
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "message": "Error occurred while getting package vulnerability data: An error occurred while sending the request.",
       "projectPath": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\MOM_5.csproj",
       "warningLevel": 1,
       "filePath": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\MOM_5.csproj",

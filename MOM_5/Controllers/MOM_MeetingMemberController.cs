@@ -37,10 +37,12 @@ namespace MOM_5.Controllers
                     member.DepartmentName = Reader["DepartmentName"].ToString();
                     member.IsPresent = Convert.ToBoolean(Reader["IsPresent"]);
                     member.Remarks = Reader["Remarks"].ToString();
+                    member.Created = Convert.ToDateTime(Reader["Created"]);
+                    member.Modified = Convert.ToDateTime(Reader["Modified"]);
 
                     mem.Add(member);
                 }
-
+                
                 Reader.Close();
                 con.Close();
 

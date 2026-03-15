@@ -2,7 +2,6 @@
 
 USE MOM_DB;
 
-
 --MOM_MeetingType
 CREATE TABLE MOM_MeetingType (
     MeetingTypeID INT IDENTITY(1,1) PRIMARY KEY,
@@ -11,7 +10,7 @@ CREATE TABLE MOM_MeetingType (
     Created DATETIME NOT NULL DEFAULT GETDATE(),
     Modified DATETIME NOT NULL DEFAULT GETDATE()
 );
-
+	
 INSERT INTO MOM_MeetingType (MeetingTypeName, Remarks)
 VALUES
 ('Weekly Review', 'Regular weekly status review'),
@@ -102,7 +101,10 @@ VALUES
 (4, 'Priya Desai', '9123456780', 'priya@company.com', 'Sales Executive'),
 (5, 'Kunal Joshi', '9000011111', 'kunal@company.com', 'Operations Lead');
 
-
+SELECT * FROM MOM_Staff
+SELECT * FROM MOM_Meetings
+SELECT * FROM MOM_MeetingMember
+SELECT * FROM MOM_MeetingVenue
 --MOM_Meetings
 CREATE TABLE MOM_Meetings (
     MeetingID INT IDENTITY(1,1) PRIMARY KEY,
@@ -208,7 +210,6 @@ BEGIN
         GETDATE()
     );
 END
-
 -----------------------------------------UpdateByPK
 
 CREATE OR ALTER PROCEDURE PR_MOM_MeetingType_UpdateByPK
@@ -227,16 +228,13 @@ WHERE MeetingTypeID = @MeetingTypeID;
 -----------------------------------------DelectByPK
 
 CREATE OR ALTER PROCEDURE PR_MOM_MeetingType_DeleteByPK
-@MeetingTypeID INT,
-@TotalRecords INT OUTPUT
+@MeetingTypeID INT
 AS
 BEGIN
     DELETE FROM MOM_MeetingType
     WHERE MeetingTypeID = @MeetingTypeID;
 
-    -- Aggregate function
-    SELECT @TotalRecords = COUNT(*) 
-    FROM MOM_MeetingType;
+
 END
 
 
@@ -368,38 +366,21 @@ WHERE MeetingVenueID = @MeetingVenueID;
 
 -----------------------------------------Insert
 
---CREATE OR ALTER PROCEDURE PR_MOM_MeetingVenue_Insert
---@MeetingVenueName NVARCHAR(200),
---@Remarks NVARCHAR(500)
-----@TotalRecords INT OUTPUT
---AS
---BEGIN
---	INSERT INTO MOM_MeetingVenue 
---	(
---		MeetingVenueName,
---		Remarks,
---		Created,
---		Modified
---	)
---	VALUES 
---	(
---		@MeetingVenueName,
---		@Remarks,
---		GETDATE(),
---		GETDATE()
---	);
---    --SELECT @TotalRecords = COUNT(*) FROM MOM_Department;
---END
 CREATE OR ALTER PROCEDURE PR_MOM_MeetingVenue_Insert
     @MeetingVenueName NVARCHAR(200),
-    @Remarks NVARCHAR(500),
-    @NewID INT OUTPUT
+    @Remarks NVARCHAR(500)
 AS
 BEGIN
-    INSERT INTO MOM_MeetingVenue(MeetingVenueName, Remarks)
-    VALUES (@MeetingVenueName, @Remarks)
-
-    SET @NewID = SCOPE_IDENTITY();
+    INSERT INTO MOM_MeetingVenue
+	(
+	MeetingVenueName, 
+	Remarks
+	)
+    VALUES 
+	(
+	@MeetingVenueName, 
+	@Remarks
+	)
 END
 
 
@@ -445,7 +426,7 @@ SELECT
 FROM MOM_Staff S
 INNER JOIN MOM_Department D
     ON D.DepartmentID = S.DepartmentID
-ORDER BY D.DepartmentName, S.StaffName;
+ORDER BY D.DepartmentName, S.StaffName;	
 
 
 -----------------------------------------SelectByPK
@@ -468,9 +449,9 @@ INNER JOIN MOM_Department D
     ON D.DepartmentID = S.DepartmentID
 WHERE S.StaffID = @StaffID;
 
-
+--select * from MOM_Staff
 -----------------------------------------Insert
-
+--exec PR_MOM_Staff_Insert 3,'Kalp','1234567893','Kalpkatba234@gmail.com','NO Remarks'
 CREATE OR ALTER PROCEDURE PR_MOM_Staff_Insert
 @DepartmentID INT,
 @StaffName NVARCHAR(200),
@@ -524,7 +505,7 @@ SET
     Modified = GETDATE()
 WHERE StaffID = @StaffID;
 
-
+select * from MOM_Staff
 -----------------------------------------DeleteByPK
 
 CREATE OR ALTER PROCEDURE PR_MOM_Staff_DeleteByPK
@@ -549,6 +530,7 @@ SELECT
     D.DepartmentName,
     MV.MeetingVenueName,
     M.IsCancelled,
+	M.DocumentPath,
 	M.CancellationDateTime,
 	M.CancellationReason,
 	M.MeetingDescription,
@@ -593,8 +575,7 @@ CREATE OR ALTER PROCEDURE PR_MOM_Meetings_Insert
 @DepartmentID INT,
 @MeetingVenueID INT,
 @MeetingDescription NVARCHAR(MAX),
-@DocumentPath NVARCHAR(500),
-@TotalRecords INT OUTPUT
+@DocumentPath NVARCHAR(500)
 AS
 BEGIN
 	INSERT INTO MOM_Meetings
@@ -619,7 +600,6 @@ BEGIN
 		GETDATE(),
 		GETDATE()
 	);
-    SELECT @TotalRecords = COUNT(*) FROM MOM_Department;
 END
 
 
@@ -649,13 +629,11 @@ WHERE MeetingID = @MeetingID;
 -----------------------------------------DeleteByPK
 
 CREATE OR ALTER PROCEDURE PR_MOM_Meetings_DeleteByPK
-@MeetingID INT,
-@TotalRecords INT OUTPUT
+@MeetingID INT
 AS
 BEGIN
 	DELETE FROM MOM_Meetings
 	WHERE MeetingID = @MeetingID;
-    SELECT @TotalRecords = COUNT(*) FROM MOM_Department;
 END
 
 

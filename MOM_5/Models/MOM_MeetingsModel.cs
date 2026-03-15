@@ -14,14 +14,10 @@ namespace MOM_5.Models
         public int DepartmentID { get; set; }
         [Required]
         public int MeetingVenueID { get; set; }
-        [Required]
-        public string MeetingDescription { get; set; }
-        [Required]
-        public string DocumentPath { get; set; }
-        [Required]
+        public string? MeetingDescription { get; set; }
+        public string? DocumentPath { get; set; }
         public bool IsCancelled { get; set; }
-        [Required]
-        public DateTime CancellationDateTime { get; set; }
+        public DateTime? CancellationDateTime { get; set; }
         public string? CancellationReason { get; set; }
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }

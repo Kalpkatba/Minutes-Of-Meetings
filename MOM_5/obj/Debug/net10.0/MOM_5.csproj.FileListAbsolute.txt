@@ -58,7 +58,6 @@ D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\scopedcss\bundle\MOM_5.styles.css
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\scopedcss\projectbundle\MOM_5.bundle.scp.css
-D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\ttxgbabr7n-{0}-b9sayid5wm-b9sayid5wm.gz
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\s9lnlyqu3c-{0}-61n19gt1b8-61n19gt1b8.gz
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\nvyxxwgx0m-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\sb5iza32o5-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -127,7 +126,6 @@ D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\staticwebassets.build.json.cache
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\staticwebassets.development.json
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\swae.build.ex.cache
-D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\MOM_5.csproj.Up2Date
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\MOM_5.dll
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\refint\MOM_5.dll
@@ -135,7 +133,6 @@ D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\MOM_5.pdb
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\MOM_5.genruntimeconfig.cache
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\ref\MOM_5.dll
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\6p39r76lwr-{0}-lh0yppc11m-lh0yppc11m.gz
-D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\vgy85r04w4-{0}-s5bz4buyey-s5bz4buyey.gz
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\3gb2jd5gi3-{0}-masyeah4yd-masyeah4yd.gz
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\ebhn9qg5vr-{0}-8li9h99y8g-8li9h99y8g.gz
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\soofq5p8mu-{0}-jj9zav7up5-jj9zav7up5.gz
@@ -720,3 +717,6 @@ D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\pqyg58t1zd-{0}-feu89b
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\imrk7k30fe-{0}-of12tq21qk-of12tq21qk.gz
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\vdmddggyd8-{0}-islyxa57bt-islyxa57bt.gz
 D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\kzb052gbg8-{0}-xx02ztqvw3-xx02ztqvw3.gz
+D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\vgy85r04w4-{0}-ij9bgmk6nf-ij9bgmk6nf.gz
+D:\Kalp_DU\SEM_6\DotNet\MOM_5\obj\Debug\net10.0\compressed\ttxgbabr7n-{0}-tuxp225mmq-tuxp225mmq.gz

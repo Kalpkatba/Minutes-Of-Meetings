@@ -1,21 +1,21 @@
 ﻿@model List<MOM_MeetingsModel>
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="card-title">Meetings</h4>
-                    <a asp-controller="Meetings" asp-action="MeetingAddEdit" class="btn btn-primary">
+<div class="row container-fluid">
+    <div class="row-cols-lg-auto mx-auto">
+        <div class="card shadow-lg">
+                <div class="card-header bg-theme-header d-flex justify-content-between align-items-center fw-bold">
+                    <h4 class="card-title mb-0 ps-2">Meetings</h4>
+
+                    <a asp-controller="MOM_Meetings" asp-action="MeetingAddEdit" asp-route-id="" class="btn btn-theme-header fw-bold">
                         <i class="bi bi-plus-circle"></i> Schedule Meeting
                     </a>
                 </div>
-
+            <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-md-3">
                         <input type="text" id="searchInput" class="form-control" placeholder="Search meetings...">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3">  
                         <select id="filterType" class="form-select">
                             <option value="">All Types</option>
                             @foreach (var mt in Model)
@@ -36,7 +36,7 @@
                     <div class="col-md-3">
                         <select id="filterStatus" class="form-select">
                             <option value="">All Status</option>
-                            <option value="upcoming">Upcoming</option>
+                            <option value="pending">Pending</option>
                             <option value="completed">Completed</option>
                             <option value="cancelled">Cancelled</option>
                         </select>
@@ -61,7 +61,7 @@
                         <tbody>
                             @foreach (var meeting in Model)
                             {
-                                var status = meeting.IsCancelled == true ? "Cancelled" : (meeting.MeetingDate > DateTime.Now ? "Upcoming" : "Completed");
+                                var status = meeting.IsCancelled == true ? "Cancelled" : (meeting.MeetingDate > DateTime.Now ? "Pending" : "Completed");
                                 <tr data-type="@meeting.MeetingTypeID" data-department="@meeting.DepartmentID" data-status="@status.ToLower()">
                                     <td>@meeting.MeetingID</td>
                                     <td>@meeting.MeetingDate.ToString("yyyy-MM-dd HH:mm")</td>
@@ -74,7 +74,7 @@
                                         {
                                             <span class="badge bg-danger">@status</span>
                                         }
-                                        else if (status == "Upcoming")
+                                        else if (status == "Pending")
                                         {
                                             <span class="badge bg-warning">@status</span>
                                         }
@@ -116,7 +116,7 @@
                 else
                 {
                     <div class="alert alert-info">
-                        No Venue found. Click "Add New Venue" to create one.
+                        No Meeting found. Click "Schedule Meeting" to create one.
                     </div>
                 }
             </div>

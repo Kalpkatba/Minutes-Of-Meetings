@@ -1,44 +1,36 @@
-﻿@model MOM_DepartmentModel
+@model MOM_DepartmentModel
 
-<div class="row justify-content-center">
-    <div class="col-md-6">
+<div class="row container-fluid">
+    <div class="row-cols-lg-auto mx-auto">
         <div class="card shadow">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-theme-header fw-bold">
                 <h4 class="card-title">
                     @(Model.DepartmentID == 0 ? "Add Department" : "Edit Department")
                 </h4>
             </div>
             <div class="card-body">
-                <form asp-controller="MOM_Department" asp-action="AddEdit" method="post">
+                <form asp-controller="MOM_Department" asp-action="DepartmentSave" method="post">
 
-                    <input type="hidden" asp-for="DepartmentID" value="@Model.DepartmentID" />
+                    <input type="hidden" asp-for="DepartmentID" />
 
                     <div class="mb-3">
                         <label asp-for="DepartmentName" class="form-label"> DepartmentName </label>
                         <span class="text-danger">*</span>
-                        <input asp-for="DepartmentName" type = "text" name ="DepartmentName" class="form-control" />
+                        <input asp-for="DepartmentName" class="form-control" placeholder="Enter Department Name..."/>
                         <span asp-validation-for="DepartmentName" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="Remarks" class="form-label">Remarks</label>
-                        <textarea name="remarks" class="form-control" rows="3" maxlength="500">@Model?.Remarks</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label asp-for="Created" class="form-label">Created</label>
-                        <textarea name="remarks" class="form-control" rows="3" maxlength="500" readonly>@Model.Created</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label asp-for="Modified" class="form-label">Modified</label>
-                        <textarea name="remarks" class="form-control" rows="3" maxlength="500" readonly>@Model.Modified</textarea>
+                        <label asp-for="Remarks" class="form-label">Remarks</label> 
+                        <textarea name="Remarks" class="form-control" rows="3" maxlength="500" placeholder="Enter Remarks...">@Model?.Remarks</textarea>
                     </div>
 
                     <div class="mt-3">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-theme fw-bold">
                             <i class="fas fa-save"></i> @(Model.DepartmentID > 0 ? "Update"
                                                         : "Save")
                         </button>
-                        <a asp-controller="MOM_Department" asp-action="DepartmentList" class="btn btn-secondary">Cancel</a>
+                        <a asp-controller="MOM_Department" asp-action="DepartmentList" class="btn btn-danger fw-bold">Cancel</a>
                     </div>
                 </form>
             </div>

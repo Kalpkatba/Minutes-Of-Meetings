@@ -2,14 +2,14 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card shadow-lg">
+            <div class="card-header bg-theme-header d-flex justify-content-between align-items-center fw-bold">
+                <h4 class="card-title mb-0 ps-2">Meeting Venues</h4>
+                <a asp-controller="MOM_MeetingVenue" asp-action="MeetingVenueAddEdit" class="btn btn-theme-header fw-bold">
+                    <i class="bi bi-plus-circle"></i> Add Venue
+                </a>
+            </div>
             <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="card-title">Meeting Venues</h4>
-                    <a asp-controller="MOM_MeetingVenue" asp-action="MeetingVenueAddEdit" class="btn btn-primary">
-                        <i class="bi bi-plus-circle"></i> Add Venue
-                    </a>
-                </div>
 
                 @if (Model != null && Model.Count > 0)
                 {

@@ -1,37 +1,36 @@
-﻿@* @model MOM_MeetingTypeModel
+@model MOM_MeetingTypeModel
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="card">
+<div class="row container-fluid">
+    <div class="row-cols-lg-auto mx-auto">
+        <div class="card shadow-lg">
+            <div class="card-header bg-theme-header fw-bold">
+                <h4 class="card-title">
+                    @(Model.MeetingTypeID != 0 ? "Edit Meeting Type" : "Add Meeting Type")
+                </h4>
+            </div>
             <div class="card-body">
-                <h4 class="card-title">@(ViewBag.IsEdit == true ? "Edit Meeting Type" : "Add Meeting Type")</h4>
+                <form asp-controller="MOM_MeetingType" asp-action="MeetingTypeSave" method="post">
 
-                @if (ViewBag.Error != null)
-                {
-                    <div class="alert alert-danger">@ViewBag.Error</div>
-                }
-
-                <form asp-controller="MeetingType" asp-action="MeetingTypeAddEdit" method="post">
-                    @if (ViewBag.IsEdit == true && mt != null)
-                    {
-                        <input type="hidden" name="MeetingTypeID" value="@mt.MeetingTypeID" />
-                    }
+                        <input type="hidden" asp-for="MeetingTypeID" />
 
                     <div class="mb-3">
-                        <label class="form-label">Meeting Type Name <span class="text-danger">*</span></label>
-                        <input type="text" name="MeetingTypeName" class="form-control"
-                               value="@(mt?.MeetingTypeName ?? "")" required maxlength="100" />
+                        <label asp-for="MeetingTypeName" class="form-label">Meeting Type Name 
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input asp-for="MeetingTypeName" type="text" name="MeetingTypeName" class="form-control" placeholder="Enter Meeting Type..." />
+                        <span asp-validation-for="MeetingTypeName" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Remarks <span class="text-danger">*</span></label>
-                        <input type="text" name="Remarks" class="form-control"
-                               value="@(mt?.Remarks ?? "")" required maxlength="100" />
+                        <label asp-for="Remarks" class="form-label">Remarks</label>
+                        <textarea name="Remarks" class="form-control" rows="3" maxlength="500" placeholder="Enter Remarks...">@Model?.Remarks</textarea>
                     </div>
 
                     <div class="mt-3">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <a asp-controller="MeetingType" asp-action="MeetingTypeList" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-theme fw-bold">
+                        @(Model.MeetingTypeID == 0 ? "Save" : "Update")
+                        </button>
+                        <a asp-controller="MOM_MeetingType" asp-action="MeetingTypeList" class="btn btn-danger fw-bold">Cancel</a>
                     </div>
                 </form>
             </div>
@@ -41,4 +40,4 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-} *@
+}
