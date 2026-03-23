@@ -14,6 +14,42 @@ namespace MOM_5.Controllers
             configuration = _configuration;
         }
 
+        #region DepartmentFilter
+        public IActionResult MeetingTypeFilter(IFormCollection fc)
+        {
+            List<MOM_MeetingTypeModel> meetType = new List<MOM_MeetingTypeModel>();
+
+            string connectionString = this.configuration.GetConnectionString("ConnectionString");
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand command = connection.CreateCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "PR_MOM_MeetingType_Search";
+            command.Parameters.Add("@MeetingTypeName", SqlDbType.VarChar).Value = fc["MeetingTypeName"].ToString();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+
+            {
+                MOM_MeetingTypeModel mtType = new MOM_MeetingTypeModel();
+
+                mtType.MeetingTypeID = Convert.ToInt32(reader["MeetingTypeID"]);
+                mtType.MeetingTypeName = reader["MeetingTypeName"].ToString();
+                mtType.Remarks = reader["Remarks"].ToString();
+                mtType.Created = Convert.ToDateTime(reader["Created"]);
+                mtType.Modified = Convert.ToDateTime(reader["Modified"]);
+
+                meetType.Add(mtType);
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return View("MeetingTypeList", meetType);
+        }
+        #endregion
+
         #region MeetingTypeList
         public IActionResult MeetingTypeList()
         {

@@ -15,6 +15,45 @@ namespace MOM_5.Controllers
             configuration = _configuration;
         }
 
+        #region StaffFilter
+        public IActionResult StaffFilter(IFormCollection fc)
+        {
+            List<MOM_StaffModel> staffList = new List<MOM_StaffModel>();
+
+            string connectionString = this.configuration.GetConnectionString("ConnectionString");
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand command = connection.CreateCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "PR_MOM_Staff_Search";
+            command.Parameters.Add("@StaffName", SqlDbType.VarChar).Value = fc["StaffName"].ToString();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+
+            {
+                MOM_StaffModel staff = new MOM_StaffModel();
+                staff.StaffID = Convert.ToInt32(reader["StaffID"]);
+                staff.StaffName = reader["StaffName"].ToString();
+                staff.DepartmentID = Convert.ToInt32(reader["DepartmentID"]);
+                staff.Mobile = reader["Mobile"].ToString();
+                staff.Email = reader["Email"].ToString();
+                staff.Remarks = reader["Remarks"].ToString();
+                staff.Created = Convert.ToDateTime(reader["Created"]);
+                staff.Modified = Convert.ToDateTime(reader["Modified"]);
+
+
+                staffList.Add(staff);
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return View("StaffList", staffList);
+        }
+        #endregion
+
         #region DropdowmDept
         public List<SelectListItem> DropdowmDept()
         {
@@ -51,14 +90,13 @@ namespace MOM_5.Controllers
             {
                 List<MOM_StaffModel> staffList = new List<MOM_StaffModel>();
 
-                SqlConnection con = new SqlConnection("Server=LAPTOP-NQ0ROPVF\\SQLEXPRESS;Database=MOM_DB;Trusted_Connection=True;TrustServerCertificate=True;");
+                string connectionString = this.configuration.GetConnectionString("ConnectionString");
+                SqlConnection connection = new SqlConnection(connectionString);
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
+                connection.Open();
+                SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = "PR_MOM_Staff_SelectAll";
                 cmd.CommandType = CommandType.StoredProcedure;
-
-                con.Open();
 
                 SqlDataReader Reader = cmd.ExecuteReader();
 
@@ -70,15 +108,15 @@ namespace MOM_5.Controllers
                     staff.DepartmentName = Reader["DepartmentName"]?.ToString();
                     staff.Mobile = Reader["Mobile"].ToString();
                     staff.Email = Reader["Email"].ToString();
-                    staff.Remarks = Reader["Remarks"].ToString();
+                    staff.Remarks = Reader["Remarks"]?.ToString();
                     staff.Created = Convert.ToDateTime(Reader["Created"]);
-                    staff.Created = Convert.ToDateTime(Reader["Modified"]);
+                    staff.Modified = Convert.ToDateTime(Reader["Modified"]);
 
                     staffList.Add(staff);
                 }
 
                 Reader.Close();
-                con.Close();
+                connection.Close();
 
 
                 return View(staffList);

@@ -14,6 +14,41 @@ namespace MOM_5.Controllers
             configuration = _configuration;
         }
 
+        #region DepartmentFilter
+        public IActionResult VenueFilter(IFormCollection fc)
+        {
+            List<MOM_MeetingVenueModel> mtvenue = new List<MOM_MeetingVenueModel>();
+
+            string connectionString = this.configuration.GetConnectionString("ConnectionString");
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand command = connection.CreateCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "PR_MOM_Venue_Search";
+            command.Parameters.Add("@MeetingVenueName", SqlDbType.VarChar).Value = fc["MeetingVenueName"].ToString();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+
+            {
+                MOM_MeetingVenueModel venue = new MOM_MeetingVenueModel();
+                venue.MeetingVenueID = Convert.ToInt32(reader["MeetingVenueID"]);
+                venue.MeetingVenueName = reader["MeetingVenueName"].ToString();
+                venue.Remarks = reader["Remarks"].ToString();
+                venue.Created = Convert.ToDateTime(reader["Created"]);
+                venue.Modified = Convert.ToDateTime(reader["Modified"]);
+
+                mtvenue.Add(venue);
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return View("MeetingVenueList", mtvenue);
+        }
+        #endregion
+
         #region MeetingVenueList
         public IActionResult MeetingVenueList()
         {

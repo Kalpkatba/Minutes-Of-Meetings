@@ -6,6 +6,7 @@ using System.Data;
 
 namespace MOM_5.Controllers
 {
+    [CheckAccess]
     public class HomeController : Controller
     {
         private IConfiguration configuration;

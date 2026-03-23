@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace MOM_5
@@ -9,7 +9,7 @@ namespace MOM_5
         {
             if (filterContext.HttpContext.Session.GetString("UserID") == null)
             {
-                filterContext.Result = new RedirectResult("~/Login/Login");
+                filterContext.Result = new RedirectResult("~/User/Login");
             }
         }
 

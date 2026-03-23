@@ -10,7 +10,7 @@
             </div>
             <div class="card-body">
 
-                <form asp-controller="MOM_MeetingVenue" asp-action="MeetingVenueSave" method="post">
+                <form asp-controller="MOM_MeetingVenue" asp-action="MeeitngVenueSave" method="post">
 
                     <input type="hidden" asp-for="MeetingVenueID" />
 
@@ -22,7 +22,7 @@
 
                     <div class="mb-3">
                         <label asp-for="Remarks" class="form-label">Remarks</label>
-                        <textarea name="remarks" class="form-control" rows="3" maxlength="500" placeholder="Enter Remarks">@Model?.Remarks</textarea>
+                        <textarea asp-for="Remarks" class="form-control" rows="3" maxlength="500" placeholder="Enter Remarks">@Model?.Remarks</textarea>
                     </div>
 
                     <div class="mt-3">

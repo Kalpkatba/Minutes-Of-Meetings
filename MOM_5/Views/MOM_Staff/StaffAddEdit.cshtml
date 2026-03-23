@@ -12,32 +12,37 @@
             <div class="card-body">
 
                 <form asp-controller="MOM_Staff" asp-action="StaffSave" method="post">
+                    <input type="hidden" asp-for="StaffID" />
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Department <span class="text-danger">*</span></label>
-                            <select name="DepartmentID" class="form-select" asp-items="ViewBag.DepartmentList" required>
+                            <select asp-for="DepartmentID" class="form-select" asp-items="ViewBag.DepartmentList" required>
                                 <option value="">-- Select Department --</option>
                             </select>
+                            <span asp-validation-for="DepartmentID" class="text-danger"></span>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Staff Name <span class="text-danger">*</span></label>
-                            <input type="text" name="StaffName" class="form-control"
+                            <label asp-for="StaffName" class="form-label">Staff Name <span class="text-danger">*</span></label>
+                            <input asp-for="StaffName" type="text" name="StaffName" class="form-control"
                                    value="@(Model?.StaffName ?? "")" required maxlength="50" />
+                            <span asp-validation-for="StaffName" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Mobile No <span class="text-danger">*</span></label>
-                            <input type="text" name="Mobile" class="form-control"
+                            <label asp-for="Mobile" class="form-label">Mobile No <span class="text-danger">*</span></label>
+                            <input type="text" asp-for="Mobile" class="form-control"
                                    value="@(Model?.Mobile ?? "")" required maxlength="20" />
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Email Address <span class="text-danger">*</span></label>
-                            <input type="email" name="Email" class="form-control"
+                            <label asp-for="Email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <input asp-for="Email" type="email" name="Email" class="form-control"
                                    value="@(Model?.Email ?? "")" required maxlength="50" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row">

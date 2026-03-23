@@ -50,6 +50,7 @@ namespace MOM_5.Controllers
             return View("DepartmentList", dept);
         }
         #endregion
+
         #region DepartmentList
         public IActionResult DepartmentList(string searchText)
         {

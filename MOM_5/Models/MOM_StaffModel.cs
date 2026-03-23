@@ -4,10 +4,8 @@ namespace MOM_5.Models
 {
     public class MOM_StaffModel
     {
-        // remove [Required] from StaffID for create scenarios
         public int StaffID { get; set; }
 
-        // either make nullable and keep [Required] or use Range to force non-zero selection
         [Required]
         public int? DepartmentID { get; set; }
 

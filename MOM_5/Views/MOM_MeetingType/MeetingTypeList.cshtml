@@ -11,9 +11,17 @@
             </div>
             <div class="card-body">
 
-                <div class="mb-3">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search meeting types...">
-                </div>
+                <form asp-controller="MOM_MeetingType" asp-action="MeetingTypeFilter" method="post" class="mb-3">
+                    <div class="input-group">
+                        <input type="text" name="MeetingTypeName" class="form-control" placeholder="Search by MeetingType ..." />
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> Search
+                        </button>
+                        <a asp-controller="MOM_MeetingType" asp-action="MeetingTypeList" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-counterclockwise"></i> Reset
+                        </a>
+                    </div>
+                </form>
                 @if (Model != null && Model.Count > 0)
                 {
                 <div class="table-responsive">

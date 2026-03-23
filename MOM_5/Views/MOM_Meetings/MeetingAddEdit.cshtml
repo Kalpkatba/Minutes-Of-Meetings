@@ -18,12 +18,14 @@
                             <select asp-for="MeetingTypeID" class="form-select" asp-items="ViewBag.MeetingTypeList" required>
                                 <option value="">-- Select Meeting Type --</option>
                             </select>
+                            <span asp-validation-for="MeetingTypeID" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label asp-for="DepartmentID" class="form-label">Department <span class="text-danger">*</span></label>
                             <select asp-for="DepartmentID" class="form-select" asp-items="ViewBag.DepartmentList" required>
                                 <option value="">-- Select Department --</option>
                             </select>
+                            <span asp-validation-for="DepartmentID" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -32,16 +34,20 @@
                             <select asp-for="MeetingVenueID" class="form-select" asp-items="ViewBag.MeetingVenueList" required>
                                 <option value="">-- Select Venue --</option>
                             </select>
+                            <span asp-validation-for="MeetingVenueID" class="text-danger"></span>
+
                         </div>
                         <div class="col-md-6 mb-3">
                             <label asp-for="MeetingDate" class="form-label">Meeting Date & Time <span class="text-danger">*</span></label>
                             <input asp-for="MeetingDate" type="datetime-local" class="form-control" id="MeetingDateInput"
                                    value="@(Model.MeetingID != 0 ? Model.MeetingDate.ToString("yyyy-MM-ddTHH:mm") : DateTime.Now.ToString("yyyy-MM-ddTHH:mm"))" required />
+                            <span asp-validation-for="MeetingDate" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label asp-for="MeetingDescription" class="form-label">Meeting Description</label>
                         <textarea asp-for="MeetingDescription" class="form-control" rows="4" maxlength="250" placeholder="Enter meeting description and agenda..."></textarea>
+                        <span asp-validation-for="MeetingDescription" class="text-danger"></span>
                     </div>
 
                     @if (Model.MeetingID != 0)
@@ -86,10 +92,11 @@
 
                         @* ── Cancellation Reason (shown only when IsCancelled) ── *@
                         <div id="CancellationReasonDiv" class="mb-3" style="display:@(Model.IsCancelled ? "block" : "none")">
-                            <label class="form-label fw-semibold">Cancellation Reason <span class="text-danger">*</span></label>
+                            <label  class="form-label fw-semibold">Cancellation Reason <span class="text-danger">*</span></label>
                             <textarea id="CancellationReasonField" name="CancellationReason"
                                       class="form-control" rows="3"
                                       placeholder="Enter reason for cancellation...">@Model.CancellationReason</textarea>
+                            <span asp-validation-for="CancellationReason" class="text-danger"></span>
                         </div>
 
                         @* ── Cancellation DateTime (read-only, shown only when cancelled) ── *@

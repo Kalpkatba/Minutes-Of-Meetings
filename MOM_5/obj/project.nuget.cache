@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bmnE6RPksSM=",
+  "dgSpecHash": "qysflSpHHDs=",
   "success": true,
   "projectFilePath": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\MOM_5.csproj",
   "expectedPackageFiles": [
@@ -25,15 +25,5 @@
     "C:\\Users\\Kalp\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.11\\system.security.cryptography.pkcs.9.0.11.nupkg.sha512",
     "C:\\Users\\Kalp\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.11\\system.security.cryptography.protecteddata.9.0.11.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Error occurred while getting package vulnerability data: An error occurred while sending the request.",
-      "projectPath": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\MOM_5.csproj",
-      "warningLevel": 1,
-      "filePath": "D:\\Kalp_DU\\SEM_6\\DotNet\\MOM_5\\MOM_5.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

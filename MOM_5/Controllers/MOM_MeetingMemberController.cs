@@ -7,8 +7,15 @@ namespace MOM_5.Controllers
 {
     public class MOM_MeetingMemberController : Controller
     {
+        private IConfiguration configuration;
+
+        public MOM_MeetingMemberController(IConfiguration _configuration)
+        {
+            configuration = _configuration;
+        }
+
         #region MeetingMemberList
-        public IActionResult MeetingMemberList(MOM_DepartmentModel dept)
+        public IActionResult MeetingMemberList(MOM_DepartmentModel dept,MOM_StaffModel staff)
         {
             try
             { 
@@ -56,151 +63,110 @@ namespace MOM_5.Controllers
         }
         #endregion
 
-        #region GetMemberById
-        public MOM_MeetingMemberModel GetMemberById(int id)
+        #region MeetingMemberAddEdit
+        public IActionResult MeetingMemberAddEdit(int? id)
         {
-            MOM_MeetingMemberModel member = new MOM_MeetingMemberModel();
+            MOM_MeetingMemberModel model = new MOM_MeetingMemberModel();
 
-            SqlConnection con = new SqlConnection("Server=LAPTOP-NQ0ROPVF\\SQLEXPRESS;Database=MOM_DB;Trusted_Connection=True;TrustServerCertificate=True;");
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = "PR_MOM_Department_SelectByPK";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter p = new SqlParameter();
-            p.ParameterName = "@MeetingMemberID";
-            p.SqlDbType = SqlDbType.Int;
-            p.Value = id;
-
-            cmd.Parameters.Add(p);
-
-            con.Open();
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            if (id != null) // EDIT MODE
             {
-                member.MeetingMemberID = Convert.ToInt32(reader["DepartmentId"]);
-                member.DepartmentName = reader["DepartmentName"].ToString();
-                member.Remarks = reader["Remarks"].ToString();
-                member.Created = Convert.ToDateTime(reader["Created"]);
-                member.Modified = Convert.ToDateTime(reader["Modified"]);
+                string connectionString = this.configuration.GetConnectionString("ConnectionString");
+                SqlConnection connection = new SqlConnection(connectionString);
+
+                connection.Open();
+
+                SqlCommand command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "PR_MOM_MeetingMember_SelectByPK";
+                command.Parameters.AddWithValue("@MeetingMemberID", id);
+
+                SqlDataReader reader = command.ExecuteReader();
+                DataTable datatable = new DataTable();
+                datatable.Load(reader);
+
+                if (datatable.Rows.Count > 0)
+                {
+                    DataRow row = datatable.Rows[0];
+                    model.MeetingMemberID = Convert.ToInt32(row["MeetingMemberID"]);
+                    model.MeetingID = Convert.ToInt32(row["MeetingID"]);
+                    model.StaffID = row["StaffID"]?.ToString();
+                    model.MeetingDate = row["MeetingDate"] != DBNull.Value ? Convert.ToDateTime(row["MeetingDate"]) : (DateTime?)null;
+                    model.StaffName = row["StaffName"]?.ToString();
+                    model.DepartmentName = row["DepartmentName"]?.ToString();
+                    model.IsPresent = row["IsPresent"] != DBNull.Value ? Convert.ToBoolean(row["IsPresent"]) : false;
+                    model.Remarks = row["Remarks"].ToString();
+
+                    model.Remarks = row["Remarks"]?.ToString();
+                }
             }
+            return View(model);
 
-            reader.Close();
-            con.Close();
-
-            return member;
         }
         #endregion
 
-        #region DepartmentAddEdit
-        public void MeetingMemberAddEdit(MOM_MeetingMemberModel member)
+        #region MeetingMemberSave
+        public IActionResult MeetingMemberSave(MOM_MeetingMemberModel model)
         {
-            bool isEditing = false;
-
-            SqlConnection con = new SqlConnection("Server=LAPTOP-NQ0ROPVF\\SQLEXPRESS;Database=MOM_DB;Trusted_Connection=True;TrustServerCertificate=True;");
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-
-            if (member.MeetingMemberID > 0)
+            if (ModelState.IsValid)
             {
-                isEditing = true;
-                cmd.CommandText = "PR_MOM_MeetingMember_UpdateByPK";
+                string connectionString = this.configuration.GetConnectionString("ConnectionString");
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                if (model.MeetingMemberID == 0)
+                {
+                    command.CommandText = "PR_MOM_MeetingMember_Insert";
+                }
+                else
+                {
+                    command.CommandText = "PR_MOM_MeetingMember_UpdateByPK";
+                    command.Parameters.Add("@MeetingMemberID", SqlDbType.Int).Value = model.MeetingMemberID;
+                }
+                command.Parameters.Add("@MeetingID", SqlDbType.Int).Value = model.MeetingID;
+                command.Parameters.Add("@StaffID", SqlDbType.Int).Value = model.StaffID;
+                command.Parameters.Add("@IsPresent", SqlDbType.Bit).Value = model.IsPresent;
+                command.Parameters.Add("@StaffName", SqlDbType.VarChar).Value = model.StaffName;
+                command.Parameters.Add("@DepartmentName", SqlDbType.VarChar).Value = model.DepartmentName;
+                command.Parameters.Add("@Remarks", SqlDbType.VarChar).Value = model.Remarks;
+                command.Parameters.Add("@MeetingDate", SqlDbType.DateTime).Value = model.MeetingDate;
+
+                command.ExecuteNonQuery();
+                connection.Close();
+                return RedirectToAction("MeetingMemberList");
+
             }
-            else
-            {
-                cmd.CommandText = "PR_MOM_MeetingMember_Insert";
-            }
-
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter remarks = new SqlParameter();
-            remarks.ParameterName = "@Remarks";
-            remarks.SqlDbType = SqlDbType.VarChar;
-            remarks.Value = member.Remarks;
-
-            SqlParameter mmId = new SqlParameter();
-            mmId.ParameterName = "@MeetingMemberID";
-            mmId.SqlDbType = SqlDbType.Int;
-            mmId.Value = member.MeetingMemberID;
-
-            SqlParameter isPresent = new SqlParameter();
-            isPresent.ParameterName = "@IsPresent";
-            isPresent.SqlDbType = SqlDbType.Bit;
-
-            cmd.Parameters.Add(isPresent);
-            cmd.Parameters.Add(remarks);
-
-            if (isEditing)
-            {
-                cmd.Parameters.Add(mmId);
-            }
-
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
+            return View("MeetingMemberAddEdit", model);
         }
         #endregion
 
-        #region AddEdit Get- This method is called by both Add and Edit GET actions
-        [HttpGet]
-        public IActionResult AddEdit(int? id)
-        {
-            if (id > 0)
-            {
-                // Edit Mode
-                MOM_MeetingMemberModel member = GetMemberById(id.Value);
-                return View("MeetingMemberAddEdit", member);
-            }
-            else
-            {
-                // Add Mode
-                return View("MeetingMemberAddEdit", new MOM_MeetingMemberModel());
-            }
-        }
-        #endregion
-
-        #region AddEdit Post- This method is called by both Add and Edit POST actions
-        [HttpPost]
-        public IActionResult AddEdit(MOM_MeetingMemberModel member)
-        {
-            MeetingMemberAddEdit(member);
-            return RedirectToAction("MeetingMemberList");
-        }
-        #endregion
-        #region
+        #region DeleteMeetingMember
         public IActionResult DeleteMeetingMember(int id)
         {
+            //Console.WriteLine(id + " is the id to delete");
             try
             {
-                SqlConnection con = new SqlConnection("Server=LAPTOP-NQ0ROPVF\\SQLEXPRESS;Database=MOM_DB;Trusted_Connection=True;TrustServerCertificate=True;");
+                string connectionString = this.configuration.GetConnectionString("ConnectionString");
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    //Console.WriteLine("APP DB = " + connection.Database);
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "PR_MOM_MeetingMember_DeleteByPK";
+                    command.Parameters.Add("@MeetingMemberID", SqlDbType.Int).Value = id;
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = "PR_MOM_MeetingMember_DeleteByPK";
-                cmd.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
 
-                SqlParameter p = new SqlParameter();
-                p.ParameterName = "@MeetingMemberID";
-                p.SqlDbType = SqlDbType.Int;
-                p.Value = id;
 
-                cmd.Parameters.Add(p);
-
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                TempData["Success"] = "Deleted Successfully.";
-                return RedirectToAction("DepartmentList");
+                TempData["Success"] = "Meeting Member Deleted Successfully.";
+                return RedirectToAction("MeetingMemberList");
             }
             catch (Exception)
             {
                 TempData["Error"] = "Foreign Key Constraint Violated.";
-                return RedirectToAction("DepartmentList");
+                return RedirectToAction("MeetingMemberList");
             }
         }
         #endregion
